@@ -28,7 +28,14 @@ add_executable(easyrdma_tests ${SOURCE_FILES})
 target_link_libraries(easyrdma_tests ${Boost_LIBRARIES} easyrdma gtest)
 
 if(WIN32)
-  target_link_libraries(easyrdma_tests ws2_32)
+  target_link_libraries(easyrdma_tests ws2_32 ${NetDirect_LIBRARYDIR})
+
+  # Copy easyrdma.dll to target directory
+  add_custom_command(TARGET easyrdma_tests POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      $<TARGET_FILE:easyrdma>
+      $<TARGET_FILE_DIR:easyrdma_tests>
+  )
 elseif(UNIX)
   # We support some combinations of compilers and boost that need this warning suppressed
   add_definitions(-DBOOST_NO_CXX98_BINDERS)
