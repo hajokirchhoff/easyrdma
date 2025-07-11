@@ -22,6 +22,9 @@ FetchContent_Declare(
   GIT_TAG        58d77fa8070e8cec2dc1ed015d66b454c8d78850 # release-1.12.1
 )
 
+find_library(NetDirect_LIB ndutil PATHS ${VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/lib)
+set(NetDirect_LIBRARYDIR ${NetDirect_LIB} CACHE FILEPATH "Path to NetDirect library")
+
 # Tests
 add_subdirectory(unit_tests)
 add_subdirectory(tests)
