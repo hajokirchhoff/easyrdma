@@ -9,6 +9,11 @@ project(easyrdma VERSION 1.0.0)
 # Main library
 add_subdirectory(core)
 
+# Link ndutil only to the actual target, not the directory
+# Replace 'core' with the actual target name defined in core/CMakeLists.txt, e.g., easyrdma_core
+# Example:
+# target_link_libraries(easyrdma_core PRIVATE ndutil)
+
 # Build tests directly against googletest so compiler settings match
 include(FetchContent)
 FetchContent_Declare(

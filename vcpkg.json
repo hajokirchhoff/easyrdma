@@ -1,0 +1,9 @@
+{
+  "name": "easyrdma",
+  "version-string": "1.0.0",
+  "description": "EasyRDMA project dependencies",
+  "dependencies": [
+    "boost",
+    "networkdirect-sdk"
+  ]
+}

@@ -37,7 +37,7 @@ set(CMAKE_SKIP_RPATH TRUE)
 target_link_libraries(easyrdma PRIVATE ${Boost_LIBRARIES})
 
 if(WIN32)
-    target_link_libraries(easyrdma PRIVATE ws2_32 ${NetDirect_LIBRARYDIR}/ndutil.lib)
+    target_link_libraries(easyrdma PRIVATE ws2_32 ${NetDirect_LIBRARYDIR})
 elseif(UNIX)
     target_link_directories(easyrdma PRIVATE ${VERBS_LIB_DIR})
     target_link_libraries(easyrdma PRIVATE libibverbs.so librdmacm.so)
