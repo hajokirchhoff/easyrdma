@@ -27,7 +27,24 @@
         "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_CXX_FLAGS_RELEASE": "/MD /O2 /Ob2 /DNDEBUG /Zi",
-        "CMAKE_EXE_LINKER_FLAGS_RELEASE": "/INCREMENTAL:NO /DEBUG"
+        "CMAKE_EXE_LINKER_FLAGS_RELEASE": "/INCREMENTAL:NO /DEBUG",
+        "CMAKE_SHARED_LINKER_FLAGS_RELEASE": "/INCREMENTAL:NO /DEBUG",
+        "CMAKE_VERBOSE_MAKEFILE": "ON"
+      }
+    },
+    {
+      "name": "x64-release-noopt-vcpkg",
+      "displayName": "x64 Release noopt (vcpkg)",
+      "description": "Release build using Ninja and vcpkg toolchain",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CXX_FLAGS_RELEASE": "/MD /Od /Ob0 /DNDEBUG /Zi",
+        "CMAKE_EXE_LINKER_FLAGS_RELEASE": "/INCREMENTAL:NO /DEBUG",
+        "CMAKE_SHARED_LINKER_FLAGS_RELEASE": "/INCREMENTAL:NO /DEBUG",
+        "CMAKE_VERBOSE_MAKEFILE": "ON"
       }
     }
   ]

@@ -239,7 +239,15 @@ void RdmaConnectedSession::AcquireAndValidateConnectionData(IND2Connector* conne
     static const uint32_t kConnectionDataBufferSize = 1024;
     std::vector<uint8_t> connectionDataBuffer(kConnectionDataBufferSize, 0);
     ULONG cdSize = static_cast<ULONG>(connectionDataBuffer.size());
-    HandleHROverlapped(connector->GetPrivateData(&connectionDataBuffer[0], &cdSize), connector, overlapped);
+    try {
+        HandleHROverlapped(connector->GetPrivateData(&connectionDataBuffer[0], &cdSize), connector, overlapped);
+    }
+    catch (RdmaException& e) 
+    {
+        std::string msg = e.GetExtendedErrorInfo();
+        std::string wh = e.what();
+        return; // For now.
+    }
     connectionDataBuffer.resize(cdSize);
     ValidateConnectionData(connectionDataBuffer, direction);
 }

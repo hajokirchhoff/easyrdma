@@ -55,6 +55,10 @@ public:
         accept = std::async(std::launch::async, [&]() {
             return sessionListener.Accept(easyrdma_Direction_Receive);
         });
+
+        // Add 500ms sleep before connecting
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
         sessionConnectorSender.Connect(easyrdma_Direction_Send, localAddressListener.GetAddrString(), sessionListener.GetLocalPort());
         Session sessionReceiver = std::move(accept.get());
 
